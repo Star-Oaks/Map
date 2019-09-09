@@ -1,0 +1,17 @@
+<div class="container">
+    
+  <div class="form-container">
+    <h3  *ngIf="!singIn">Регистрация в приложении</h3>
+    <h3  *ngIf="singIn">Войти</h3>
+    <button class="sing-in-button" *ngIf="!singIn" (click)="switchForm()">Войти</button> 
+    <button class="sing-in-button" *ngIf="singIn" (click)="switchForm()">Регистрация</button> 
+    <form class="form"  [formGroup]="userForm">
+      <input placeholder="Email" class="form-item" type="email" [class.error]="userForm.controls.email.invalid && userForm.controls.email.touched" formControlName="email" >
+      <input placeholder="Password" class="form-item" type="password" [class.error]="userForm.controls.password.invalid && userForm.controls.password.touched" formControlName="password">
+      <button  *ngIf="!singIn" type="button" class="form-item" (click)="validationForm()">Зарегестрироватся</button>
+      <button  *ngIf="singIn" type="button" class="form-item" (click)="singInFunction()">Войти</button>
+    </form>
+    <button *ngIf="!singIn" class="login" (click)="facebookLogin()">Login with Facebook</button> 
+    <span class="user-created" *ngIf="userAlreadyCrtd">Пользователь с такие Email уже существует</span>
+  </div>
+</div>
